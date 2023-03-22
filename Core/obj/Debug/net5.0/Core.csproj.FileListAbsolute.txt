@@ -1,0 +1,15 @@
+C:\Projects\SMS_Seperation-Of-Concerns\Core\obj\Debug\net5.0\Core.csproj.AssemblyReference.cache
+C:\Projects\SMS_Seperation-Of-Concerns\Core\obj\Debug\net5.0\Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\SMS_Seperation-Of-Concerns\Core\obj\Debug\net5.0\Core.AssemblyInfoInputs.cache
+C:\Projects\SMS_Seperation-Of-Concerns\Core\obj\Debug\net5.0\Core.AssemblyInfo.cs
+C:\Projects\SMS_Seperation-Of-Concerns\Core\obj\Debug\net5.0\Core.csproj.CoreCompileInputs.cache
+C:\Projects\SMS_Seperation-Of-Concerns\Core\bin\Debug\net5.0\Core.deps.json
+C:\Projects\SMS_Seperation-Of-Concerns\Core\bin\Debug\net5.0\Core.runtimeconfig.json
+C:\Projects\SMS_Seperation-Of-Concerns\Core\bin\Debug\net5.0\Core.runtimeconfig.dev.json
+C:\Projects\SMS_Seperation-Of-Concerns\Core\bin\Debug\net5.0\Core.dll
+C:\Projects\SMS_Seperation-Of-Concerns\Core\bin\Debug\net5.0\Core.pdb
+C:\Projects\SMS_Seperation-Of-Concerns\Core\obj\Debug\net5.0\Core.dll
+C:\Projects\SMS_Seperation-Of-Concerns\Core\obj\Debug\net5.0\refint\Core.dll
+C:\Projects\SMS_Seperation-Of-Concerns\Core\obj\Debug\net5.0\Core.pdb
+C:\Projects\SMS_Seperation-Of-Concerns\Core\obj\Debug\net5.0\Core.genruntimeconfig.cache
+C:\Projects\SMS_Seperation-Of-Concerns\Core\obj\Debug\net5.0\ref\Core.dll
