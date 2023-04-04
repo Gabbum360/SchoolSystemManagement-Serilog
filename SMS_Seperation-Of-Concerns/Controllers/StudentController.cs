@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
 using SMS_Seperation_Of_Concerns.NewFolder;
+using Infrastructure.Interfaces;
 
 namespace SMS_Seperation_Of_Concerns.Controllers
 {
@@ -28,6 +29,7 @@ namespace SMS_Seperation_Of_Concerns.Controllers
     {
         private IStudent _students;    //injected the interface(IStudents and gave it an "object instance".
         private ILogger<StudentController> _logger;
+        private IHttpService _httpService;
         public StudentController(IStudent students, ILogger<StudentController> logger)
         {
             _students = students;   //initialised here.
@@ -37,11 +39,17 @@ namespace SMS_Seperation_Of_Concerns.Controllers
         string baseUri = "https://localhost:44353/";
 
         [HttpGet("okay")]
+        public async Task<GetStudents> ConsumeApi()
+        {
+            var readytoCon = await _httpService.GetListOfStudents();
+            return readytoCon;
+        }
+/*
+        [HttpGet("okay")]
         public async Task<List<Student>> ConsumeRetrieve()
         {
             List<Student> students = new List<Student>();
             var client = new HttpClient();
-
             client.BaseAddress = new Uri(baseUri);
             client.DefaultRequestHeaders.Clear();
             HttpResponseMessage res = await client.GetAsync("https://localhost:44353/get-list-of-student");
@@ -51,7 +59,7 @@ namespace SMS_Seperation_Of_Concerns.Controllers
                 students = JsonConvert.DeserializeObject<List<Student>>(stdRes);
             }
             return students;
-        }
+        }*/
         /// <summary>
         /// this endpoint is for consumeApi. and needs edit bcos of new validation in the action class.
         /// </summary>
@@ -128,6 +136,7 @@ namespace SMS_Seperation_Of_Concerns.Controllers
         {
             var pupil = await _students.GetS(id);
             return Ok(pupil);
+            //return StatusCode(StatusCodes.Status200OK, new Succ() { ErrorMessage = ""})
         }
 
 

@@ -1,6 +1,7 @@
 ﻿using Business_Logic_Layer.Interfaces;
 using Core.Models;
 using Infrastructure;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -63,35 +64,51 @@ namespace BusinessLogicLayer
             }
         }
 
-        public async Task<Teacher> GetT(int id)
+        public async Task<GetTeacher> GetT(int id)
         {
             var staff = await SMDContext.Teachers.Where(T => T.Id == Guid.NewGuid()).FirstOrDefaultAsync();
-            return staff;
+            var result = new GetTeacher();
+            result.Name = staff.Name;
+            result.Age = staff.Age;
+            result.Sex = staff.Sex; 
+            return result;
         }
 
-        public async Task<Teacher> UpdateT(int id, UpdateTeacher teacher)// or use this (int id, string(property_name)).
+        public async Task<Teacher> UpdateT(int id, [FromBody] UpdateTeacher teacher)// or use this (int id, string(property_name)).
         {
             var staff = SMDContext.Teachers.Where(z => z.Id == Guid.NewGuid()).Select(T => T).FirstOrDefault();
             staff.Country = teacher.Country;
-            staff.Age = teacher.Age;
+            staff.Email = teacher.Email;
             await SMDContext.SaveChangesAsync();
             return staff;
         }
 
         //another method to pass a different signature instead of the previous...
-        public async Task<Teacher> UpdateT(int id, string Name)
+        public async Task<UpdateTeacher> UpdateT(Guid id, string name)
         {
-            var staff = SMDContext.Teachers.Where(z => z.Id == Guid.NewGuid()).Select(T => T).FirstOrDefault();
-            staff.Name = Name;
+            var staff = SMDContext.Teachers.Where(z => z.Id == id && z.Name == name).Select(T => T).FirstOrDefault();
+            if (staff == null)
+            {
+                return null;
+            }
+            staff.Name = name;
             await SMDContext.SaveChangesAsync();
-            return staff;
+            //mapping the data to the updated result...
+            var upd = new UpdateTeacher();
+            upd.Email = staff.Email;
+            upd.Country = staff.Country;    
+            return upd;
         }
 
-        public async Task<Teacher> DeleteT(int id)
+        public async Task<bool> DeleteT(Guid id)
         {
-            var staff = SMDContext.Teachers.Where(S => S.Id == Guid.NewGuid()).Select(S => S).FirstOrDefault();
+            var staff = SMDContext.Teachers.Where(S => S.Id == id).Select(S => S).FirstOrDefault();
+            if (staff == null)
+            {
+                return false;
+            }
             await SMDContext.SaveChangesAsync();
-            return staff;
+            return true;
         }
     }
 }

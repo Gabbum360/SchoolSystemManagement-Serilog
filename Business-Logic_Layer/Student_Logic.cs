@@ -13,6 +13,8 @@ using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
+using Infrastructure.Interfaces;
 
 namespace BusinessLogicLayer
 {
@@ -49,7 +51,7 @@ namespace BusinessLogicLayer
             return students;
         }*/
 
-        public async Task<List<Core.Models.Student>> GetStudents()
+        public async Task<List<GetStudents>> GetStudents()
         {
             List<GetStudents> students = new List<GetStudents>();//created a list of "students" from the "GetStudents" class.
                                                                  //which will help pull all Studentss when accessing this endpoint irrespective of the validations on the model.
@@ -62,13 +64,18 @@ namespace BusinessLogicLayer
                 std.Country = item.Country;
                 students.Add(std);
             }
-            return studentsFromDb;
+            return students;
         }
 
-        public async Task<Student> GetStudents(int id)
+        public async Task<GetStudents> GetStudents(int id)
         {
             var pupil = await SMDContext.Students.Where(student => student.Id == id.ToString()).Select(s => s).FirstOrDefaultAsync();
-            return pupil;
+            if(id == 0)
+            {
+                return null;
+            }
+            var student = new GetStudents();
+            return student;
         }
 
         /*public async Task<Student> Regr(string firstname, string surname, int age, string sex, Guid classArmId, string country)
@@ -102,32 +109,24 @@ namespace BusinessLogicLayer
             return std;
         }*/
         
-        public async Task<Student> Regr(string firstName, string surName, int age, string sex, string country, Guid classarmId)
+        public async Task<AddStudent> Regr(string firstName, string surName, int age, string sex, string country, Guid classarmId)
         {
             _logger.LogInformation("entered the Regr method");
             try
             {
                 var totalCountsOfStudents = await SMDContext.Students.CountAsync();//tjis line gets the total count of available students...
-                if(totalCountsOfStudents <= 0)
-                {
-                    _logger.LogInformation("theres no student in the database for now");
-                }
-                else
-                {
-                    for (int i = 0; i < 0; i++)
-                    {
-                        _logger.LogInformation("student being registered");
-                    }
-                }
                 var student = new Student(firstName, surName, age, sex, country, totalCountsOfStudents)
                 {
                     ClassArmId = classarmId //theres is just this line here bcos other fields are set to private and so can not be used from this Logic class.
                 };
-
                 //var std = Student.StudentFactory.Create(firstName, surName, age, sex, country);
                 SMDContext.Add(student);
                 await SMDContext.SaveChangesAsync();
-                return student;
+                var stdnt = new AddStudent();  //create an instance of the view-model to hold the results to be displayed.
+                stdnt.SurName = student.SurName;
+                stdnt.Sex = student.Sex;
+                stdnt.Country = student.Country;
+                return stdnt;
             }
             catch (Exception e)
             {
@@ -136,27 +135,52 @@ namespace BusinessLogicLayer
             }
             //return student;
         }
-        public async Task<Student> GetS(string id)
+        public async Task<GetStudents> GetS(string id)
         {
-            var pupil = await SMDContext.Students.Where(student => student.Id == id).FirstOrDefaultAsync();
-            return pupil;
+            try
+            {
+                var pupil = await SMDContext.Students.Where(student => student.Id == id).FirstOrDefaultAsync();
+                if (string.IsNullOrEmpty(id))
+                {
+                    return null;
+                }
+                var stdnt = new GetStudents();
+                stdnt.SurName = pupil.SurName;
+                stdnt.Sex = pupil.Sex;
+                stdnt.Country = pupil.Country;
+                return stdnt;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "student id is invalid", id);
+                throw;
+            }
         }
 
-        public async Task<Student> UpdateS(string id, string firstName, string surName, int age, string country)
+        public async Task<GetStudents> UpdateS(string id, string firstName, string surName, int age, string country)
         {
 
             try
             {
                 var stdnt = SMDContext.Students.Where(v => v.Id == id).Select(student => student).FirstOrDefault();
-                // var student = new Student(firstName, surName, age, sex, country, studentNo);
-                stdnt.SetFirstName(firstName);
+                if(stdnt.Id != null)
+                {
+                    // var student = new Student(firstName, surName, age, sex, country, studentNo);
+                    stdnt.SetFirstName(firstName);
+                }
+                else
+                {
+                    throw new Exception("invalid student Id");
+                }
                 SMDContext.Update(stdnt);
                 await SMDContext.SaveChangesAsync();
-                return stdnt;
+                var student = new GetStudents();
+                student.Id = stdnt.Id;
+                return student;
             }
             catch (Exception e)
             {
-                _logger.LogTrace("error om the logic. check and refresh page");
+                _logger.LogTrace(e,"error om the logic. check and refresh page");
                 throw;
             }
         }
@@ -164,6 +188,7 @@ namespace BusinessLogicLayer
         public async Task<Student> DeleteS(string id)
         {
             var pupil = SMDContext.Students.Where(D => D.Id == id).Select(Student => Student).FirstOrDefault();
+            
             SMDContext.Remove(pupil);
             await SMDContext.SaveChangesAsync();
             return pupil;

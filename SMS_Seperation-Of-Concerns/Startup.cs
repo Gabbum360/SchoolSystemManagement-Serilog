@@ -21,6 +21,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Core.Models;
 using Business_Logic_Layer;
+using Infrastructure.Interfaces;
+using Infrastructure.ThirdParty;
 
 namespace SMS_Seperation_Of_Concerns
 {
@@ -50,6 +52,7 @@ namespace SMS_Seperation_Of_Concerns
             services.AddScoped<IStudent, Students_Logic>();
             services.AddScoped<ITeacher, Teachers_Logic>();
             services.AddScoped<ISchoolClass, SchoolClass_Logic>();
+            services.AddScoped<IHttpService, HttpServices>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SMS_Seperation_Of_Concerns", Version = "v1" });

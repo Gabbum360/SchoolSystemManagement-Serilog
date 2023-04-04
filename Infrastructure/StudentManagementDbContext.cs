@@ -20,6 +20,21 @@ namespace Infrastructure
         {
         }
 
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Class> Classes { get; set; }
+        public DbSet<Arm> Arms { get; set; }
+        public DbSet<Book> Bookss { get; set; }
+        public DbSet<ClassArm> ClassArms { get; set; }
+        public DbSet<ClassTeacher> ClassTeachers { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
+        public DbSet<ClassSubject> ClassSubjects { get; set; }
+        public DbSet<StudentClass> StudentClasses { get; set; }
+        public DbSet<LoginUser> LoginUsers { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<LoginModel> LoginModels { get; set; }
+        public DbSet<RegisterModel> RegisterModel { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
         }
@@ -57,22 +72,5 @@ namespace Infrastructure
   .Property(e => e.Id)
   .ValueGeneratedOnAdd();*/
         }
-
-        public DbSet<Student> Students { get; set; }
-        public DbSet<Teacher> Teachers { get; set; }
-        public DbSet<Class> Classes { get; set; }
-        public DbSet<Arm> Arms { get; set; }
-        public DbSet<Book> Bookss { get; set; }
-        public DbSet<ClassArm> ClassArms { get; set; }
-        public DbSet<ClassTeacher> ClassTeachers { get; set; }
-        public DbSet<Subject> Subjects { get; set; }
-        public DbSet<ClassSubject> ClassSubjects { get; set; }
-        public DbSet<StudentClass> StudentClasses { get; set; }
-        public DbSet<LoginUser> LoginUsers { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<LoginModel> LoginModels { get; set; }
-        public DbSet<RegisterModel> RegisterModel { get; set; }
-        /*        public DbSet<UserRoles> UserRoless { get; set; } 
-        */
     }
 }

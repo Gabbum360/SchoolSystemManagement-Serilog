@@ -11,10 +11,10 @@ namespace Business_Logic_Layer.Interfaces
     {
         // Teacher Regr();
         Task<Teacher> RegT(string Name, int Age, string Sex, string Email, string Country, string staffNo);
-        Task<Teacher> GetT(int id);
+        Task<GetTeacher> GetT(int id);
         Task<Teacher> UpdateT(int id, UpdateTeacher teacher);
-        Task<Teacher> UpdateT(int id, string Name);
+        Task<UpdateTeacher> UpdateT(Guid id, string Name);
         Task<List<Teacher>> GetTeachers();
-        Task<Teacher> DeleteT(int id);
+        Task<bool> DeleteT(Guid id);
     }
 }

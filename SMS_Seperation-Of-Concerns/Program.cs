@@ -17,7 +17,7 @@ namespace SMS_Seperation_Of_Concerns
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Information()
                 .WriteTo.Debug()
-                .WriteTo.File("logs.txt", rollingInterval: RollingInterval.Day)
+                .WriteTo.File("C:\\Logs\\logs.txt", rollingInterval: RollingInterval.Day)
                 .CreateLogger();
 
             try

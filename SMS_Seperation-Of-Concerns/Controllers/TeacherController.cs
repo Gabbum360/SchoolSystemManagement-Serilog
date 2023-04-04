@@ -105,14 +105,14 @@ namespace Core.Controllers
 
 
         [HttpPatch("update-only-Country/{id}")]
-        public async Task<IActionResult> Update_Teacher(int id, [FromBody] Teacher teacher) //using your model here is not a good practice as it exposes your model to the outside world.
+        public async Task<IActionResult> Update_Teacher(int id, UpdateTeacher model) //using your model here is not a good practice as it exposes your model to the outside world.
         {
-            var staff = await _teacher.UpdateT(id, teacher.Name);   //teacher here gives access to all properties in the Model which is a wrong practice.
+            var staff = await _teacher.UpdateT(id, model);   //teacher here gives access to all properties in the Model which is a wrong practice.
             return Ok(staff);
         }
 
         [HttpDelete("delete-teacher/{id}")]
-        public async Task<IActionResult> DeleteTeacher(int id)
+        public async Task<IActionResult> DeleteTeacher(Guid id)
         {
             var staff = await _teacher.DeleteT(id);
             return Ok("Deleted successfully");
