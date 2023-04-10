@@ -23,6 +23,8 @@ using Core.Models;
 using Business_Logic_Layer;
 using Infrastructure.Interfaces;
 using Infrastructure.ThirdParty;
+using Business_Logic_Layer.Student_Logics.Commands;
+using Business_Logic_Layer.Student_Logics.Queries;
 
 namespace SMS_Seperation_Of_Concerns
 {
@@ -49,7 +51,16 @@ namespace SMS_Seperation_Of_Concerns
             */
 
             //the following services adds the interfaces to the project where its required and used...
-            services.AddScoped<IStudent, Students_Logic>();
+            services.AddScoped<IGetStudents, GetStudentsQuery>();
+            services.AddScoped<IGetStudent, GetStudentByIdQuery>();
+            services.AddScoped<IRegister, RegisterStudentCommand>();
+            services.AddScoped<IUpdate, UpdateStudentCommand>();
+            services.AddScoped<IDelete, DeleteStudentByIdCommand>();
+            /*services.AddScoped<IGetStudents, GetStudentsQuery>();
+            services.AddScoped<IGetStudent, GetStudentByIdQuery>();
+            services.AddScoped<IRegister, RegisterStudentCommand>();
+            services.AddScoped<IUpdate, UpdateStudentCommand>();
+            services.AddScoped<IDelete, DeleteStudentByIdCommand>();*/
             services.AddScoped<ITeacher, Teachers_Logic>();
             services.AddScoped<ISchoolClass, SchoolClass_Logic>();
             services.AddScoped<IHttpService, HttpServices>();

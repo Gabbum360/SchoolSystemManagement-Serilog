@@ -100,9 +100,9 @@ namespace BusinessLogicLayer
             return upd;
         }
 
-        public async Task<bool> DeleteT(Guid id)
+        public async Task<bool> DeleteT(Guid id, string name)
         {
-            var staff = SMDContext.Teachers.Where(S => S.Id == id).Select(S => S).FirstOrDefault();
+            var staff = SMDContext.Teachers.Where(S => S.Id == id && S.Name == name).Select(S => S).FirstOrDefault();
             if (staff == null)
             {
                 return false;

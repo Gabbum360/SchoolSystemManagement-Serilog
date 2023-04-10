@@ -11,7 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication_Layer", "Authentication_Layer\Authentication_Layer.csproj", "{AB3D4659-3D0C-4F65-911B-EBF93390A28E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{4C7CAFF1-48C5-4766-A63C-4A93267F7FA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{4C7CAFF1-48C5-4766-A63C-4A93267F7FA4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B9C73208-81A8-4552-8256-351E927A0161}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeperationOfConcerns.UnitTest", "SeperationOfConcerns.Infrastructure\SeperationOfConcerns.UnitTest.csproj", "{BE9E17F8-E072-437B-B446-481B27B20847}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{820268F2-8D28-4BE2-BC41-30FCCD71D5C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +45,20 @@ Global
 		{4C7CAFF1-48C5-4766-A63C-4A93267F7FA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C7CAFF1-48C5-4766-A63C-4A93267F7FA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C7CAFF1-48C5-4766-A63C-4A93267F7FA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE9E17F8-E072-437B-B446-481B27B20847}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE9E17F8-E072-437B-B446-481B27B20847}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE9E17F8-E072-437B-B446-481B27B20847}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE9E17F8-E072-437B-B446-481B27B20847}.Release|Any CPU.Build.0 = Release|Any CPU
+		{820268F2-8D28-4BE2-BC41-30FCCD71D5C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{820268F2-8D28-4BE2-BC41-30FCCD71D5C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{820268F2-8D28-4BE2-BC41-30FCCD71D5C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{820268F2-8D28-4BE2-BC41-30FCCD71D5C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BE9E17F8-E072-437B-B446-481B27B20847} = {B9C73208-81A8-4552-8256-351E927A0161}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A618F272-8E42-413C-9F64-609094FE1359}

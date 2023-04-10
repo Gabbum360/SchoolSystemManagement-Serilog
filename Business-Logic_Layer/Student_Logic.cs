@@ -1,4 +1,4 @@
-﻿using Core.Models;
+﻿/*using Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -33,7 +33,7 @@ namespace BusinessLogicLayer
         {
         }
 
-        /*string baseUri = "https://localhost:44353/";
+        *//*string baseUri = "https://localhost:44353/";
         
         public async Task<List<Student>> ConsumeApi()
         {
@@ -49,7 +49,7 @@ namespace BusinessLogicLayer
                students = JsonConvert.DeserializeObject<List<Student>>(stdRes);
             }           
             return students;
-        }*/
+        }*//*
 
         public async Task<List<GetStudents>> GetStudents()
         {
@@ -78,7 +78,7 @@ namespace BusinessLogicLayer
             return student;
         }
 
-        /*public async Task<Student> Regr(string firstname, string surname, int age, string sex, Guid classArmId, string country)
+        *//*public async Task<Student> Regr(string firstname, string surname, int age, string sex, Guid classArmId, string country)
         {
             var totalCountsOfStudents = await SMDContext.Students.CountAsync();
             var student = new Student(firstname, surname, age, sex, country, totalCountsOfStudents)
@@ -107,7 +107,7 @@ namespace BusinessLogicLayer
                 
             }
             return std;
-        }*/
+        }*//*
         
         public async Task<AddStudent> Regr(string firstName, string surName, int age, string sex, string country, Guid classarmId)
         {
@@ -139,6 +139,12 @@ namespace BusinessLogicLayer
         {
             try
             {
+                //the two patterns works but the second esposes.
+                *//*var pupil = await SMDContext.Students.Where(student => student.Id == id).Select(f => new GetStudents()
+                {
+                    Id = f.Id,
+                    Country = f.Country
+                }).FirstOrDefaultAsync();*//*
                 var pupil = await SMDContext.Students.Where(student => student.Id == id).FirstOrDefaultAsync();
                 if (string.IsNullOrEmpty(id))
                 {
@@ -185,13 +191,14 @@ namespace BusinessLogicLayer
             }
         }
 
-        public async Task<Student> DeleteS(string id)
+        public async Task<bool> DeleteS(string id)
         {
             var pupil = SMDContext.Students.Where(D => D.Id == id).Select(Student => Student).FirstOrDefault();
             
             SMDContext.Remove(pupil);
             await SMDContext.SaveChangesAsync();
-            return pupil;
+            return true;
         }
     }
 }
+*/

@@ -15,6 +15,6 @@ namespace Business_Logic_Layer.Interfaces
         Task<Teacher> UpdateT(int id, UpdateTeacher teacher);
         Task<UpdateTeacher> UpdateT(Guid id, string Name);
         Task<List<Teacher>> GetTeachers();
-        Task<bool> DeleteT(Guid id);
+        Task<bool> DeleteT(Guid id, string name);
     }
 }

@@ -30,4 +30,9 @@
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Student-Logics\Dto\" />
+    <Folder Include="Student-Logics\Handlers\" />
+  </ItemGroup>
+
 </Project>

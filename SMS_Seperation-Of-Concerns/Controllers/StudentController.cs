@@ -27,13 +27,28 @@ namespace SMS_Seperation_Of_Concerns.Controllers
 
     public class StudentController : ControllerBase
     {
-        private IStudent _students;    //injected the interface(IStudents and gave it an "object instance".
+        //private IStudent _students;    //injected the interface(IStudents and gave it an "object instance".
+        private IDelete _delete;
+        private IUpdate _update;
+        private IRegister _register;
+        private IGetStudent _GetStudent;
+        private IGetStudents _GetStudents;
         private ILogger<StudentController> _logger;
         private IHttpService _httpService;
-        public StudentController(IStudent students, ILogger<StudentController> logger)
+        //private IRepository<Student> _repository;
+        public StudentController(/*IStudent students, */
+            ILogger<StudentController> logger/*, IRepository<Student> repository*/,
+            IDelete delete, IGetStudents getStudents,
+            IUpdate update, IRegister register, IGetStudent getStudent)
         {
-            _students = students;   //initialised here.
+            //_students = students;   //initialised here.
             _logger = logger;
+            _delete = delete;
+            // _repository = repository;
+            _GetStudent = getStudent;   
+            _GetStudents = getStudents; 
+            _register = register;   
+            _update = update;
         }
 
         string baseUri = "https://localhost:44353/";
@@ -94,7 +109,7 @@ namespace SMS_Seperation_Of_Concerns.Controllers
         [HttpGet("get-all-students")]
         public async Task<IActionResult> GetAllStudents()
         {
-            var allStdnt = await _students.GetStudents();
+            var allStdnt = await _GetStudents.GetStudents();
             return Ok(allStdnt);
 
         }
@@ -109,9 +124,9 @@ namespace SMS_Seperation_Of_Concerns.Controllers
 
         //working.
         [HttpPost("register-new-studnt")]
-        public async Task<IActionResult> RegisterNewStudent([FromBody] Student pupil)
+        public async Task<IActionResult> RegisterNewStudent([FromBody] AddStudent pupil)
         {
-            var stdnt = await _students.Regr(pupil.SurName, pupil.FirstName, pupil.Age, pupil.Sex, pupil.Country, pupil.ClassArmId);
+            var stdnt = await _register.Regr(pupil.SurName, pupil.FirstName, pupil.Age, pupil.Sex, pupil.Country, pupil.ClassArmId);
             return Ok(stdnt);
         }
 
@@ -120,7 +135,7 @@ namespace SMS_Seperation_Of_Concerns.Controllers
         {
             try
             {
-                var stdnt = await _students.Regr(std.FirstName, std.SurName, std.Age, std.Sex, std.Country, std.ClassArmId);
+                var stdnt = await _register.Regr(std.FirstName, std.SurName, std.Age, std.Sex, std.Country, std.ClassArmId);
                 return Ok();
             }
             catch (Exception e)
@@ -134,7 +149,7 @@ namespace SMS_Seperation_Of_Concerns.Controllers
         [HttpGet("get-student-with-full_Details/{id}")]
         public async Task<IActionResult> GetOneStudent(string id)
         {
-            var pupil = await _students.GetS(id);
+            var pupil = await _GetStudent.GetS(id);
             return Ok(pupil);
             //return StatusCode(StatusCodes.Status200OK, new Succ() { ErrorMessage = ""})
         }
@@ -143,7 +158,7 @@ namespace SMS_Seperation_Of_Concerns.Controllers
         [HttpPatch("update-studentRecord/{id}")]
         public async Task<IActionResult> UpdateStudent(string id, [FromBody] UpdateStudent student)
         {
-            var student1 = await _students.UpdateS(id, student.FirstName, student.SurName, student.Age, student.Country);
+            var student1 = await _update.UpdateS(id, student.FirstName, student.SurName, student.Age, student.Country);
             return Ok(student1);
         }
 
@@ -151,7 +166,7 @@ namespace SMS_Seperation_Of_Concerns.Controllers
         [HttpDelete("delete-student/{id}")]
         public async Task<IActionResult> DeleteStudent(string id)
         {
-            var pupil = await _students.DeleteS(id);
+            var pupil = await _delete.DeleteS(id);
             return Ok("deleted successfully!");
         }
 
