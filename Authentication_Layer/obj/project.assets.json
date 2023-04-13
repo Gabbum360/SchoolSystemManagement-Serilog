@@ -3384,19 +3384,6 @@
       "Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
-        "dependencies": {
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.0",
-          "Microsoft.AspNetCore.Mvc": "2.2.0",
-          "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
-          "Microsoft.Extensions.Configuration": "6.0.1",
-          "Serilog": "2.12.0",
-          "Serilog.AspNetCore": "5.0.0",
-          "Serilog.Settings.Configuration": "3.4.0",
-          "Serilog.Sinks.Console": "4.1.0",
-          "Serilog.Sinks.File": "5.0.0",
-          "System.Security.Claims": "4.3.0",
-          "UnitOfWork.EntityFrameworkCore": "5.0.0"
-        },
         "compile": {
           "bin/placeholder/Core.dll": {}
         },
