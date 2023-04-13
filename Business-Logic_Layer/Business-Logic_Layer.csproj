@@ -31,7 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Student-Logics\Dto\" />
     <Folder Include="Student-Logics\Handlers\" />
   </ItemGroup>
 

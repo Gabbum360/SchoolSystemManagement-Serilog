@@ -24,15 +24,23 @@ namespace Business_Logic_Layer.Student_Logics.Commands
         }
         public async Task<bool> DeleteS(string id)
         {
-            var pupil = _SMDbContext.Students.Where(D => D.Id == id).Select(Student => Student).FirstOrDefault();
-            if(pupil == null)
+            try
             {
-                return false;
-            }
+                var pupil = _SMDbContext.Students.Where(D => D.Id == id).Select(Student => Student).FirstOrDefault();
+                if (pupil == null)
+                {
+                    return false;
+                }
 
-            _SMDbContext.Remove(pupil);
-            await _SMDbContext.SaveChangesAsync();
-            return true;
+                _SMDbContext.Remove(pupil);
+                await _SMDbContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                _logger.LogWarning("hey! this task was unable to be completed, please check and retify the issue first");
+                throw;
+            }
         }
     }
 }
