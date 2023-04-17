@@ -20,7 +20,7 @@ namespace Infrastructure.ThirdParty
             client.BaseAddress = new Uri(configuration.GetSection("BaseUrl").Value);
         }
 
-        public async Task<GetStudents> GetListOfStudents()
+        public async Task<GetStudents>GetListOfStudents()
         {
             List<GetStudents> students = new List<GetStudents>();
             client.DefaultRequestHeaders.Clear();
