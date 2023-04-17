@@ -1,0 +1,27 @@
+[33m40ba560[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;32mfeature/teacher-logic[m[33m)[m HEAD@{0}: rebase (abort): updating HEAD
+[33m40ba560[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;32mfeature/teacher-logic[m[33m)[m HEAD@{1}: rebase (abort): updating HEAD
+[33md94e59c[m HEAD@{2}: reset: moving to HEAD
+[33md94e59c[m HEAD@{3}: commit: edited
+[33mbbbc139[m HEAD@{4}: commit (amend): addeds
+[33m4325abf[m HEAD@{5}: commit (amend): addeds
+[33m8210d99[m[33m ([m[1;31mgabbum360/main[m[33m)[m HEAD@{6}: commit: added
+[33m40ba560[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;32mfeature/teacher-logic[m[33m)[m HEAD@{7}: checkout: moving from feature/teacher-logic to main
+[33m40ba560[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;32mfeature/teacher-logic[m[33m)[m HEAD@{8}: checkout: moving from main to feature/teacher-logic
+[33m40ba560[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;32mfeature/teacher-logic[m[33m)[m HEAD@{9}: commit: i think i just resolved the error by removing the directory of serilog
+[33m449c68b[m HEAD@{10}: checkout: moving from feature/student-logic_seperation to main
+[33mb1f0b70[m[33m ([m[1;31mgabbum360/feature/student-logic_seperation[m[33m, [m[1;32mfeature/student-logic_seperation[m[33m)[m HEAD@{11}: commit: hmmm
+[33mda059f2[m HEAD@{12}: commit: moved getStudent dto back to core/viewModel
+[33m52439b9[m HEAD@{13}: commit: moved getStudent dto back to core/viewModel
+[33m41cda89[m HEAD@{14}: commit: initial student-logic
+[33m14113b6[m HEAD@{15}: checkout: moving from main to feature/student-logic_seperation
+[33m449c68b[m HEAD@{16}: commit: new save
+[33mf109d0a[m HEAD@{17}: commit: showing error for serilog
+[33mf496c64[m HEAD@{18}: checkout: moving from feature/student-logic_seperation to main
+[33m14113b6[m HEAD@{19}: commit: clearing my errors
+[33m990397b[m HEAD@{20}: commit: files stacked before now and are unable to be staged
+[33m16ce21b[m HEAD@{21}: commit: seperated student interfaces to seperates parts in a class and added
+[33mf496c64[m HEAD@{22}: checkout: moving from main to feature/student-logic_seperation
+[33mf496c64[m HEAD@{23}: checkout: moving from feature/student-logic_seperation to main
+[33mf496c64[m HEAD@{24}: checkout: moving from main to feature/student-logic_seperation
+[33mf496c64[m HEAD@{25}: commit: added serilog package to the project and now add3d some folders to the
+[33m2d2a227[m HEAD@{26}: commit (initial): initial
