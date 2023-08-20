@@ -26,7 +26,7 @@ namespace Business_Logic_Layer.Student_Logics.Queries
         {
             try
             {
-                List<GetStudents> students = new List<GetStudents>();//created a list of "students" from the "GetStudents" class.
+                List<GetStudents> students = new List<GetStudents>();//created a list of "students" from the "GetStudents" Dto.
                                                                      //which will help pull all Studentss when accessing this endpoint irrespective of the validations on the model.
                 var studentsFromDb = await _SMDbContext.Students.ToListAsync();
                 foreach (var item in studentsFromDb)
